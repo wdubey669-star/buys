@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YallaCompare - Buy Insurance</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        yallapink: '#D81B60',
+                        yallapinkhover: '#C2185B',
+                        yallapinklight: '#FCE4EC',
+                        whatsappgreen: '#25D366'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .yalla-input:focus {
+            border-color: #D81B60;
+            box-shadow: 0 0 0 4px rgba(216, 27, 96, 0.12);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-[#F4F7F9] text-[#1E293B] font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-yallapink selection:text-white">
+
+    <!-- HEADER SECTION -->
+    <header class="w-full bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-1 group">
+                <span class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-[#2B3990]">yalla</span>
+                <span class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-yallapink">Compare</span>
+                <span class="hidden sm:inline-block text-[10px] text-gray-400 font-medium italic border-l border-gray-300 pl-2 ml-2">A Green Company</span>
+            </a>
+
+            <button onclick="toggleModal('Menu', 'Welcome to YallaCompare Buy Portal.')" 
+                    class="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-700 hover:border-yallapink hover:text-yallapink transition duration-200">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow py-8 sm:py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
+            <div class="mb-10 text-center sm:text-left">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 tracking-tight font-heading">
+                    Buy
+                </h1>
+            </div>
+
+            <!-- Form Container Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-12 border border-gray-200/80 shadow-sm mb-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-4">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight leading-snug">
+                            You are<br class="hidden lg:block"/> buying for
+                        </h2>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
+                                        Full Name*
+                                    </label>
+                                    <input type="text" required id="fullName" placeholder="Full Name" 
+                                        class="yalla-input w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none text-sm font-medium bg-gray-50/50 transition duration-200">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
+                                        E-mail*
+                                    </label>
+                                    <input type="email" required id="email" placeholder="E-mail" 
+                                        class="yalla-input w-full px-4 py-3.5 rounded-xl border border-gray-300 outline-none text-sm font-medium bg-gray-50/50 transition duration-200">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-2">
+                                    Mobile Number*
+                                </label>
+                                <div class="flex items-center rounded-xl border border-gray-300 overflow-hidden focus-within:border-yallapink focus-within:ring-2 focus-within:ring-yallapink/20 transition bg-gray-50/50">
+                                    <div class="bg-gray-100 px-4 py-3.5 border-r border-gray-200 flex items-center space-x-2 text-sm font-bold text-gray-700 select-none">
+                                        <img src="https://flagcdn.com/w40/ae.png" alt="UAE Flag" class="w-5 h-3.5 rounded-sm object-cover shadow-sm">
+                                        <span>+971</span>
+                                    </div>
+                                    <input type="tel" required id="mobile" placeholder="Mobile Number" pattern="[0-9]{8,10}"
+                                        class="w-full px-4 py-3.5 outline-none text-sm text-gray-900 font-medium bg-transparent">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end pt-4">
+                                <button type="submit" class="px-10 py-3.5 rounded-full bg-yallapink hover:bg-yallapinkhover text-white font-bold text-xs tracking-wider uppercase shadow-md transition transform active:scale-95 flex items-center space-x-2">
+                                    <span>NEXT</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEWSLETTER / STAY IN TOUCH -->
+        <section class="border-t border-b border-gray-200 bg-white py-12 my-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div class="md:col-span-5">
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Newsletter</span>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight font-heading">
+                            Stay in touch
+                        </h3>
+                    </div>
+
+                    <div class="md:col-span-7">
+                        <p class="text-xs text-gray-500 font-medium mb-3">Subscribe to our newsletter and stay updated.</p>
+                        <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-3">
+                            <input type="email" required id="newsletterEmail" placeholder="EMAIL" 
+                                class="yalla-input flex-grow px-5 py-3.5 rounded-xl border border-gray-300 outline-none text-sm font-medium bg-gray-50/50">
+                            <button type="submit" class="bg-yallapink hover:bg-yallapinkhover text-white font-bold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-md transition whitespace-nowrap">
+                                SUBSCRIBE
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RATINGS & TRUST METRICS BAR -->
+        <section class="bg-white py-6 border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center md:text-left items-center">
+                    <div class="col-span-2 md:col-span-1 border-b md:border-b-0 md:border-r border-gray-200 pb-4 md:pb-0">
+                        <span class="text-xs font-bold uppercase text-gray-400 tracking-wider block mb-1">We are rated</span>
+                        <div class="flex items-center justify-center md:justify-start space-x-2">
+                            <span class="text-xl font-black text-gray-900">4.5/5</span>
+                            <div class="text-yallapink text-xs flex space-x-0.5">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span class="text-lg font-extrabold text-gray-900 block flex items-center justify-center md:justify-start">
+                            <i class="fa-brands fa-google text-blue-500 mr-1.5 text-base"></i> 35,903
+                        </span>
+                        <span class="text-xs text-gray-500 font-medium">Google Reviews</span>
+                    </div>
+
+                    <div>
+                        <span class="text-lg font-extrabold text-gray-900 block">35+</span>
+                        <span class="text-xs text-gray-500 font-medium">Insurance Partners</span>
+                    </div>
+
+                    <div>
+                        <span class="text-lg font-extrabold text-gray-900 block">2+ Million</span>
+                        <span class="text-xs text-gray-500 font-medium">Trusted Customers</span>
+                    </div>
+
+                    <div>
+                        <span class="text-lg font-extrabold text-gray-900 block">4+ Million</span>
+                        <span class="text-xs text-gray-500 font-medium">Policies Sold</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MAIN FOOTER SECTION -->
+    <footer class="bg-[#F8FAFC] pt-16 pb-12 border-t border-gray-200 text-gray-600 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+                <div class="col-span-2">
+                    <a href="#" class="inline-flex items-center space-x-1 font-heading font-extrabold text-2xl tracking-tight mb-3">
+                        <span class="text-[#2B3990]">yalla</span>
+                        <span class="text-yallapink">Compare</span>
+                    </a>
+                    <p class="text-gray-500 leading-relaxed mb-4 pr-4">
+                        YallaCompare.com is the leading finance comparison site in Abu Dhabi, Dubai, and the Middle East.
+                    </p>
+                    <p class="text-gray-500 font-medium mb-1">YallaCompare, United Arab Emirates (UAE)</p>
+                    <p class="text-base font-extrabold text-gray-900 mb-6">+971 45 622 100</p>
+
+                    <div class="flex flex-wrap gap-2">
+                        <a href="#" class="bg-black text-white px-3.5 py-2 rounded-xl flex items-center space-x-2 hover:bg-gray-800 transition">
+                            <i class="fa-brands fa-apple text-lg"></i>
+                            <div class="text-[9px] leading-tight text-left">
+                                <span class="text-gray-400">Download on the</span><br><strong class="text-xs font-semibold">App Store</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="bg-black text-white px-3.5 py-2 rounded-xl flex items-center space-x-2 hover:bg-gray-800 transition">
+                            <i class="fa-brands fa-google-play text-base"></i>
+                            <div class="text-[9px] leading-tight text-left">
+                                <span class="text-gray-400">GET IT ON</span><br><strong class="text-xs font-semibold">Google Play</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 uppercase tracking-wider mb-4 text-[11px]">QUICK LINKS</h4>
+                    <ul class="space-y-2.5 text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-yallapink transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Terms and Conditions</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Careers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 uppercase tracking-wider mb-4 text-[11px]">FINANCE PRODUCTS</h4>
+                    <ul class="space-y-2.5 text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-yallapink transition">Credit Cards</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Personal Loans</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Bank Accounts</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Guide to Investing</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">List of Banks</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 uppercase tracking-wider mb-4 text-[11px]">INSURANCE</h4>
+                    <ul class="space-y-2.5 text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-yallapink transition">Car Insurance</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Health Insurance</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">International Health</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Travel Insurance</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Life Insurance</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Home Insurance</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Pet Insurance</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-900 uppercase tracking-wider mb-4 text-[11px]">TOOLS</h4>
+                    <ul class="space-y-2.5 text-gray-500 font-medium">
+                        <li><a href="#" class="hover:text-yallapink transition">Car Loan Calculator</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Mortgage Calculator UAE</a></li>
+                        <li><a href="#" class="hover:text-yallapink transition">Compare mortgages in the UAE</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-400">
+                <p>© 2026 YallaCompare. All Rights Reserved.</p>
+                
+                <!-- SOCIAL MEDIA ICONS (PINK CIRCLES) -->
+                <div class="flex items-center space-x-3.5 mt-4 md:mt-0">
+                    <a href="https://facebook.com" target="_blank" aria-label="Facebook"
+                       class="w-10 h-10 rounded-full border-2 border-yallapink text-yallapink flex items-center justify-center hover:bg-yallapink hover:text-white transition duration-300 transform hover:scale-110 shadow-sm">
+                        <i class="fa-brands fa-facebook-f text-sm font-bold"></i>
+                    </a>
+                    
+                    <a href="https://x.com" target="_blank" aria-label="X"
+                       class="w-10 h-10 rounded-full border-2 border-yallapink text-yallapink flex items-center justify-center hover:bg-yallapink hover:text-white transition duration-300 transform hover:scale-110 shadow-sm">
+                        <i class="fa-brands fa-x-twitter text-sm font-bold"></i>
+                    </a>
+                    
+                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"
+                       class="w-10 h-10 rounded-full border-2 border-yallapink text-yallapink flex items-center justify-center hover:bg-yallapink hover:text-white transition duration-300 transform hover:scale-110 shadow-sm">
+                        <i class="fa-brands fa-linkedin-in text-sm font-bold"></i>
+                    </a>
+                    
+                    <a href="https://youtube.com" target="_blank" aria-label="YouTube"
+                       class="w-10 h-10 rounded-full border-2 border-yallapink text-yallapink flex items-center justify-center hover:bg-yallapink hover:text-white transition duration-300 transform hover:scale-110 shadow-sm">
+                        <i class="fa-brands fa-youtube text-sm"></i>
+                    </a>
+                    
+                    <a href="https://instagram.com" target="_blank" aria-label="Instagram"
+                       class="w-10 h-10 rounded-full border-2 border-yallapink text-yallapink flex items-center justify-center hover:bg-yallapink hover:text-white transition duration-300 transform hover:scale-110 shadow-sm">
+                        <i class="fa-brands fa-instagram text-sm font-bold"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ADDED VIDEO FOOTER (LEGAL & REGULATORY DISCLAIMER - AT THE VERY BOTTOM) -->
+    <section class="bg-[#EEF2F6] text-gray-600 text-[11px] leading-relaxed py-10 border-t border-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div>
+                <h5 class="font-bold text-gray-800 text-xs mb-1">YallaCompare, United Arab Emirates</h5>
+                <p>Information found on YallaCompare is provided for illustrative purposes only, rates are subject to change based on your personal circumstances.</p>
+                <p>You should always speak to a trained professional before taking out any form of finance.</p>
+                <p>Implications of non-payment: If you fail to keep up with repayments on your finance, your bank may file a report with the UAE credit rating agency which may impact your ability to borrow from UAE banks in the future.</p>
+            </div>
+
+            <div class="font-bold text-gray-900 tracking-wide uppercase text-[11.5px]">
+                YOUR HOME MAY BE REPOSSESSED IF YOU DO NOT KEEP UP REPAYMENTS ON A MORTGAGE, LOAN OR ANY OTHER DEBT SECURED ON IT.
+            </div>
+
+            <p class="text-gray-500 italic">
+                Insurance is provided by YallaCompare Insurance Broker LLC (formerly Gulf Resources Insurance Management Services Limited).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-300/60">
+                <!-- UAE - Federal Level -->
+                <div class="space-y-1">
+                    <img src="https://wasmenia.com/_next/image?url=https%3A%2F%2Fstrapi.wasmenia.com%2Fuploads%2FCentral_Bank_of_the_U_A_E_650a24318e.svg&w=828&q=75" alt="" style="width: 100px;">
+                    <p class="text-gray-600">Licensed and regulated by the</p>
+                    <p class="font-bold text-gray-900">Central Bank of the UAE | Registration No. 20</p>
+                </div>
+
+                <!-- DUBAI -->
+                
+                <div class="space-y-1">
+                    <div class="1" style="font-size: 20px;">DUBAI</div>
+                    <p class="text-gray-600 font-medium">Department of Economy & Tourism</p>
+                    <p class="text-gray-600">Dubai - Head Office</p>
+                    <p class="text-gray-600">Trade License issued by Department of Economy & Tourism in Dubai</p>
+                    <p class="font-bold text-gray-900">Licence No. 235006</p>
+                    <p class="text-gray-600 pt-1">Health Insurance intermediary Permit issued by Dubai Health Authority ID:</p>
+                    <p class="font-bold text-gray-900">BRK-00045</p>
+                    <p class="text-gray-600 pt-1">Member of the Emirates Insurance Federation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING ACTION WIDGETS -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center space-x-3">
+        <a href="https://wa.me/97145622100" target="_blank" class="bg-whatsappgreen hover:bg-emerald-600 text-white px-5 py-3 rounded-full shadow-2xl flex items-center space-x-2.5 transition transform hover:scale-105 active:scale-95">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="text-xs font-extrabold tracking-wide hidden sm:inline-block">Talk to an expert</span>
+        </a>
+
+        <button onclick="toggleModal('Account', 'Sign in or register to track your insurance purchase.')" class="w-12 h-12 rounded-full bg-yallapink hover:bg-yallapinkhover text-white flex items-center justify-center shadow-2xl transition transform hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-user text-sm"></i>
+        </button>
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div id="infoModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 text-center shadow-2xl">
+            <div class="w-14 h-14 rounded-full bg-yallapinklight text-yallapink flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 id="modalTitle" class="text-xl font-extrabold text-gray-900 mb-2">Notification</h3>
+            <p id="modalBody" class="text-sm text-gray-600 mb-6 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full bg-yallapink hover:bg-yallapinkhover text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition">
+                CLOSE
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            toggleModal('Application Sent!', `Thank you ${name}. Your details have been received successfully! Our representative will call you on +971 ${mobile} or contact you at ${email}.`);
+        }
+
+        function handleNewsletter(event) {
+            event.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            toggleModal('Subscribed!', `Thank you! You are now subscribed with ${email}.`);
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        function toggleModal(title, text) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = text;
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
